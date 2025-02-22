@@ -1,6 +1,15 @@
-
-
 class cNode():
+	"""
+	Collision Node known as cNode
+		Parent Class: None
+		Class Variables:
+			private:
+				__render = the base level canvas created using tkinter
+				__allObjects = a python dictionary that houses all available objects in the codebase
+			protected: None
+			public: 
+				multipleIds = tbd
+	"""
 	def __init__(self, render):
 		self.__render = render #this is the main canvas created in "mainTkinter.py"
 		self.__allObjects = {}
@@ -10,6 +19,20 @@ class cNode():
 	#use: self.__render.find_overlapping(x1, y1, x2, y2)
 	#Identifies if objects are overlapping, therefor, colliding
 	def isColliding(self, targetObject):
+		"""
+		Method: isColliding
+			req. Arguments:
+				targetObject = object that is checking for collision
+
+		Description:
+			Finds the bbox (coords corisponding to the outline of the object) 
+			and uses this bbox to see if tkinters canvas has more than one object in the same box of coords. 
+			Then adds the resulting list of objects to the list -> "listOfTags"
+
+		Returns:
+			self.multipleIds list to be used to see if collison happend,
+			then determine what to do about it. 
+		"""
 		listOfTags = []
 		self.multipleIds = [] #resets list everytime method is called
 		#returns the targetObjects top left and botom right corners
@@ -37,6 +60,18 @@ class cNode():
 
 
 	def collisionDirection(self, myTag, theirTagList):
+		"""
+		Method: collisionDirection
+			
+		req. Arguments: 
+			myTag = a (str) used to identify who the main object is
+			theirTagList = a list to hold the rest of the colliding objects
+
+		Description
+			it is used to determin which direction the main object should move based on where
+			collision occured. This is done by comparing coordinates of the two or more objects that
+			are colliding with each other. 
+		"""
 		#variable declaration
 		direction = [] #creates a list to store each side that has collision
 		myObject = self.__allObjects[myTag] #finds the object relating to "myTag"
@@ -101,6 +136,14 @@ class cNode():
 	#finds the center point of a specified object
 	#TODO may need to remove later?
 	def get_trueCenter(self, tagOrId):
+		"""
+		Method: get_trueCenter
+			req. arguments:
+				tagOrId = a (str) that coorisponds to a key inside the __allObjects dictionary
+		
+		Description:
+			Using tagOrId this method will determin the coordinates of the center of the displayed object. returns tuple "center"
+		"""
 		#using key tagOrId we find specified object
 		targetObject = self.__allObjects[tagOrId]
 
@@ -115,4 +158,15 @@ class cNode():
 		return center
 
 	def addObject(self, targetObject):
+		"""
+		Method: addObject
+			req. arguments:
+				targetObject = the python object that is to be added to dictionary __allObjects
+		
+		Description:
+			Adds python object to dictionary __allObjects[key=targetObject's tag] = targetObject
+		"""
 		self.__allObjects[targetObject.gettag(1)] = targetObject
+	
+
+
