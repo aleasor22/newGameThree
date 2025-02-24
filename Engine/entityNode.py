@@ -4,15 +4,15 @@ from .imageNode import iNode
 class eNode(kNode):
 	"""
 	eNode known as Entity Node
-		Parent Class: kNode(kineticsNode.py)
-		Variables:
-			(any from kNode) 
-			private: None
-			protected:
-				_speed = storage of how "fast" the object moves
-				_entityTag = (str) stores a general tag name that specifies a group of objects
-			public: None
-			
+	Parent Class: kNode(kineticsNode.py)
+	Variables:
+		(any from kNode) 
+		private: None
+		protected:
+			._speed = storage of how "fast" the object moves
+			._entityTag = (str) stores a general tag name that specifies a group of objects
+		public: None
+	Description: 
 	"""
 	def __init__(self, canvas):
 		super().__init__(canvas)
@@ -22,17 +22,16 @@ class eNode(kNode):
 	def entitySetUp(self, imgName, entityTag, uniqueID, coords, static=False):
 		"""
 		Method: entitySetUp
-			req. Arguments:
-				imgName = the file name that houses the png displayed on screen.
-				entityTag = (str) that refers to the group tag used for every instance of object.
-				uniqueID = (str) that refers to specific instance of object.
-				coords = (x, y) tupe to represent where the image is displayed to. (Top-Left Corner)
-				static = Set to true when the object cannot move. (default == False)
+		req. Arguments:
+			imgName = the file name that houses the png displayed on screen.
+			entityTag = (str) that refers to the group tag used for every instance of object.
+			uniqueID = (str) that refers to specific instance of object.
+			coords = (x, y) tupe to represent where the image is displayed to. (Top-Left Corner)
+			static = Set to true when the object cannot move. (default == False)
 		Description: 
 			Used to set and store entity level tags and parameters.
 		Returns: Nothing
 		"""
-
 		self.imageCreate("z_Pictures\\" + str(imgName))
 		self.imagePlace(coords)
 		self._entityTag = entityTag #NOTE do I need this?

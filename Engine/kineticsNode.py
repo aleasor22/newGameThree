@@ -1,6 +1,22 @@
 from .imageNode import iNode
 
 class kNode(iNode):
+	"""
+	kNode known as Kinetics Node
+	Parent Class: iNode(imageNode.py)
+	Class Variables:
+		(any non-private from iNode) 
+		private: None
+		protected: 
+			._isStatic = Default False, True if the object static
+			._isStunned = Default False, True if the object is "Stunned"
+			._rightDisabled = Default False, If True the entity can't move in this direction
+			._leftDisabled = Default False, If True the entity can't move in this direction
+			._upDisabled = Default False, If True the entity can't move in this direction
+			._downDisabled = Default False, If True the entity can't move in this direction
+		public: None
+	Description: Background logic to allow for objects to move on screen.
+	"""
 	def __init__(self, canvas):
 		super().__init__(canvas)
 		self._isStatic = False #default is false
@@ -13,6 +29,14 @@ class kNode(iNode):
 
 
 	def controlledMove(self, direction, speed):
+		"""
+		Method: methodName
+		req. Arguments:
+			direction = str, a string that tells what direction the object will move to.
+			speed = int, an integer that determins how fast an object will move.
+		Description: Sets up how an object gets to moved according to called moves within logic or user input.
+		Returns: Returns tuple (x, y) - New coordinate location after the last movement.
+		"""
 		# print(myCoords, "my Coords?", ID)
 		x, y = self._coords
 		if direction == 'left' and self._leftDisabled == False:
@@ -29,6 +53,14 @@ class kNode(iNode):
 		return (x, y)
 
 	def knockBack(self, direction, speed):
+		"""
+		Method: knockBack
+		req. Arguments:
+			direction = str, a string that tells what direction the knockback shouls move the object to.
+			speed = int, a integer that determins how fast an object will move. 
+		Description: Determins how far something should be knocked back after a collision even occurs
+		Returns: Returns tuple (x, y) - New coordinate location after the last collision event.
+		"""
 		x, y = self._coords
 		if direction == 'left':
 			x -= 1 * speed
@@ -46,7 +78,14 @@ class kNode(iNode):
 
 
 	def staticHit(self, direction):
-		x, y = myCoords
+		"""
+		Method: staticHit
+		req. Arguments:
+			direction = str, a string that tells what direction that will be blocked. 
+		Description: Prvents an object to move in the direction of something that is blocking it. 
+		Returns: Returns tuple (x, y) - New coordinate location after the last collision event.
+		"""
+		x, y = myCoords #vscode is declaring this as an undefined variable, what/how is this used for?
 		if direction == 'left':
 			self._rightDisabled = True
 		if direction == 'right':
@@ -60,15 +99,19 @@ class kNode(iNode):
 		return (x, y)
 
 	def get_isStatic(self):
+		"""Returns boolean self._isStatic"""
 		return self._isStatic
 
 	def get_isStunned(self):
+		"""Returns boolean self._isStunned"""
 		return self._isStunned
 
 	def set_isStunned(self, isStunned):
+		"""Sets isStunned to self._isStunned"""
 		self._isStunned = isStunned
 
 	def resetDisabledDirections(self):
+		"""Resets the disabled directions back to their False default."""
 		self._rightDisabled = False
 		self._leftDisabled = False
 		self._upDisabled = False

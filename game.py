@@ -31,6 +31,7 @@ def gameLoop():
 				# for tag in enemyCollision:
 				# 	enemy.set_coords(enemy.knockBack(enemyDirection[tag][0], enemy.get_speed()))
 	#end of enemy's collision logic
+	
 	#start of player's Collision logic
 	playerCollision = cNode.isColliding(player)
 	if playerCollision != []:

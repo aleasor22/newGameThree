@@ -1,8 +1,7 @@
 Addition Notes for Commits
 
-    Changed version: [v0.0.4] --> [v0.0.41]
+    Changed version: [v0.0.41]
 
 
     Added/Changed documentation of classes and methods
-        For collisionNode & entityNode
     Improved readablility where necessary
