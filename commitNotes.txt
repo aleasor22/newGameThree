@@ -2,6 +2,8 @@ Addition Notes for Commits
 
     Changed version: [v0.0.41]
 
+    GUI_Main was a redundant class, I could just create a different instance of mainTkinter.py class for the map maker
 
-    Added/Changed documentation of classes and methods
-    Improved readablility where necessary
+    Finished documentation for Engine and Entity modules.
+        game.py and mapMaker.py need documentation still.
+        Will change Engine\mapMaker.py do a different name.

@@ -14,7 +14,8 @@ class kNode(iNode):
 			._leftDisabled = Default False, If True the entity can't move in this direction
 			._upDisabled = Default False, If True the entity can't move in this direction
 			._downDisabled = Default False, If True the entity can't move in this direction
-		public: None
+		public: 
+			.myCoords
 	Description: Background logic to allow for objects to move on screen.
 	"""
 	def __init__(self, canvas):
@@ -85,7 +86,7 @@ class kNode(iNode):
 		Description: Prvents an object to move in the direction of something that is blocking it. 
 		Returns: Returns tuple (x, y) - New coordinate location after the last collision event.
 		"""
-		x, y = myCoords #vscode is declaring this as an undefined variable, what/how is this used for?
+		x, y = self.myCoords #vscode is declaring this as an undefined variable, what/how is this used for?
 		if direction == 'left':
 			self._rightDisabled = True
 		if direction == 'right':

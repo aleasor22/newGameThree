@@ -65,7 +65,7 @@ print('<<----------------------------->>')
 print('<<-------Initial Set UP-------->>')
 print('<<----------------------------->>')
 #calls classes
-TKINTER = mainApplication("Dungeon_Crawler [v0.0.4]", )
+TKINTER = mainApplication("Dungeon_Crawler [v0.0.41]", )
 cNode = cNode(TKINTER.get_render())
 player = Player(TKINTER.get_render())
 
