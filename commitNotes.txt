@@ -1,9 +1,9 @@
 Addition Notes for Commits
 
-    Changed version: [v0.0.41]
+    Changed version:    Game [v0.0.41]
+                        Developer [v0.0.1]
 
-    GUI_Main was a redundant class, I could just create a different instance of mainTkinter.py class for the map maker
+    Removed mapMaker.py from the engin folder as it wasn't needed there
+    Change the mapMaker.py file to developer.py within the project folder. 
 
-    Finished documentation for Engine and Entity modules.
-        game.py and mapMaker.py need documentation still.
-        Will change Engine\mapMaker.py do a different name.
+    Got the basic tkinter window up for developer.py
