@@ -35,30 +35,24 @@ class mainApplication():
 		#Entity setup
 		# self.player = Player()
 
-	def windowSetUp(self):
+	def windowSetUp(self, newCanvas=False):
 		"""
 		Method: windowSetUp
-		req. Arguments: None
+		req. Arguments: newCanvas = (boolean), controls if the default .__render is used or a new one is created instead
 		Description: Creates the tkinter window and sets up the canvas inside that window.
 		Returns: None
 		"""
 		self.__mainApp.title(self.__version)
 		self.__mainApp.geometry(str(self.__screenWidth)+'x'+str(self.__screenHeight))
-		self.createCanvas()
-		# self.entitySetUp()
-		self.__mainApp.mainloop()
 
-	#background controlls
-	def windowLoop(self):
-		"""
-		Method: windowLoop
-		req. Arguments: None
-		Description: Kills tkinter window when 'q' is pressed, refreshes screen after .__FPS time passes. (currently unused)
-		Returns: None
-		"""
-		if keyboard.is_pressed('q') == True:
-			self.closeWindow()
-		self.__mainApp.after(int(self.__FPS), self.windowLoop)
+		##Only creates a new canvas to use if "newCanvas" is set to True
+		if newCanvas == True:
+			self.__render = Canvas(self.__mainApp, height=self.__screenHeight, width=self.__screenWidth, bg="Grey")
+		
+		#Packs the .__render into the tkinter window
+		self.createCanvas()
+		#Calls the main loop of the tkinter window
+		self.__mainApp.mainloop()
 
 	def closeWindow(self):
 		"""Calls .quit() method to close the tkinter window."""
@@ -120,3 +114,14 @@ class mainApplication():
 			return self.__gridSpot
 		else:
 			return self.__gridSpot[index]
+		
+	##Setters
+	def set_screenSize(self, width, height):
+		"""
+		Sets the height and width of the application. Default: (w=1280, h=768)
+		Argument:	width = (int), the number of pixels along the width of the app
+					height = (int), the number of pixels along the height of the app
+		"""
+		self.__screenHeight = height
+		self.__screenWidth = width
+
