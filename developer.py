@@ -3,7 +3,7 @@ import keyboard
 
 def developmentLoop():
     #Kill switch
-    print("hello, testOne")
+    #This works now
     if keyboard.is_pressed('q') == True:
         TKINTER.closeWindow()
 
@@ -22,14 +22,16 @@ title = "Map Developer [v0.0.1]"
 ##Creates a tkinter object
 TKINTER = mainApplication(title)
 
+##Tkinter Setup (Defaults to 1280 by 768)
+# TKINTER.set_screenSize(1920, 1024) #stick with default for  now
 
 print('\n<<-------Game Main Loop-------->>\n')
 ##Code that runs repeatedly while the app is open.
 developmentLoop()
 
+
 #This has to be after 'developmentLoop()
-#TKINTER.set_screenSize(64, 128)
-TKINTER.windowSetUp()#True)
+TKINTER.windowSetUp()
 
 
 print('\n\n\n')
