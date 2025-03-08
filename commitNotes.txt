@@ -3,7 +3,21 @@ Addition Notes for Commits
     Changed version:    Game [v0.0.41]
                         Developer [v0.0.1]
 
-    Removed mapMaker.py from the engin folder as it wasn't needed there
-    Change the mapMaker.py file to developer.py within the project folder. 
+    Can now easily change size of the tkinter window & Canvas. Can now show the grid on the developer.py tkinter window. With the ability to turn on & off effectively. 
+        
 
-    Got the basic tkinter window up for developer.py
+    Discovered how reStructured Text (RST) works, planning to re-write documentation to utilize RST. So that I can hover over
+    Methods & Classes and get a good description of what they do in VS Code. 
+
+    Got heavily sidetracked with a couple of things, however I cleaned up my OneNotes and how they were organized. I also explanded on ideas that I initially wrote down. 
+
+    Future Plans:
+        Should or Does the ID of the visual boxes need to match the __gridSpot list?
+        Tiles Maps: Goal to expand on this idea, will incorporate todays (3/8/25) work, and may improve how collision is handled. 
+        Revisit Sphinx autodoc??? ***PROBABLY NOT - MASSIVE AMMOUNTS OF TIME WAS WASTED ON THIS BEFORE***
+        
+    Current Bugs:
+        Fix game.py, as todays changes broke that code
+
+    Bugs Squashed:
+        Fixed an bug where the canvas.create_rectangle() method wasn't drawing to the screen.

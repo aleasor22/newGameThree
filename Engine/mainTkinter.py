@@ -5,6 +5,16 @@ import keyboard
 
 class mainApplication():
 	"""
+	Parameters
+	----------
+	FPS
+		int, how many times the canvas refreshes.
+	Methods
+	-------
+	:ref:windowSetUp(self)
+	:ref:closeWindow(self)
+	OLD
+	---
 	mainApplication known as Main Application (runs tkinter for Game)
 	Parent Class: None
 	Class Variables:
@@ -23,34 +33,30 @@ class mainApplication():
 	"""
 	#initialises class variables
 	def __init__(self, title):
-		#subject to change, so that it can be re-used for game.py and mapMaker.py
 		self.__FPS = 1000 / 30
 		self.__mainApp = tk.Tk() #Tkinter window
 		self.__version = title
 		self.__screenWidth = 1280
 		self.__screenHeight = 768
-		self.__render = Canvas(self.__mainApp, height=self.__screenHeight, width=self.__screenWidth, bg='Grey')
-		self.__gridSpot = []
+		self.__render = None#Canvas(self.__mainApp, height=self.__screenHeight, width=self.__screenWidth, bg='Grey')
+		self.__gridSpot = [] #a list where each index is a tuple of a cordinate spot. 
 
 		#Entity setup
 		# self.player = Player()
 
-	def windowSetUp(self, newCanvas=False):
+	def windowSetUp(self):
 		"""
-		Method: windowSetUp
-		req. Arguments: newCanvas = (boolean), controls if the default .__render is used or a new one is created instead
-		Description: Creates the tkinter window and sets up the canvas inside that window.
-		Returns: None
+		Description
+		-----------
+		Creates the tkinter window and sets up the canvas inside that window.
 		"""
+		##Generates title and tk window size
 		self.__mainApp.title(self.__version)
 		self.__mainApp.geometry(str(self.__screenWidth)+'x'+str(self.__screenHeight))
 
-		##Only creates a new canvas to use if "newCanvas" is set to True
-		if newCanvas == True:
-			self.__render = Canvas(self.__mainApp, height=self.__screenHeight, width=self.__screenWidth, bg="Grey")
-		
 		#Packs the .__render into the tkinter window
 		self.createCanvas()
+		self.createGrid(visability=True)
 		#Calls the main loop of the tkinter window
 		self.__mainApp.mainloop()
 
@@ -60,16 +66,24 @@ class mainApplication():
 
 	def createCanvas(self):
 		"""Creates the canvas and pushes it to screen."""
+		self.__render = Canvas(self.__mainApp, height=self.__screenHeight, width=self.__screenWidth, bg="Grey")
 		self.__render.grid(row=0, column=0, )#rowspan=10)
 		self.__render.grid_propagate(0)
 
+		
+		# self.__render.create_line(64, 64, 128, 64, activewidth=1000)
+		# self.__render.create_line(64, 84, 128, 84)
+
+		
+
 	#default grid size to 32x32, 40x24 boxes  or 960 total boxes
 	#default grid size of 64x64, 20x12 boxes  or 240 total boxes
-	def createGrid(self, gridSize=64):
+	def createGrid(self, gridSize=64, visability=False):
 		"""
 		Method: createGrid
 		req. Arguments:
-			gridSize int, default=64, declares how large or small each box of the grid will be. 
+			gridSize = int, default=64, declares how large or small each box of the grid will be. 
+			visibility = boolean, default=False, determins if the grid space is visible in the tkinter window. 
 		Description: Populates the .__gridSpot list with coordinates of the top left corner of each box as a tuple (x, y)
 		Returns: None
 		"""
@@ -81,12 +95,28 @@ class mainApplication():
 		x, y = (0, 0)
 
 		for i in range(gridHeight):
-			x = 0 #resets x to 0 after each loop of "i"
+			x = 0 #resets x to 0 after each loop of "j"
 			for j in range(gridWidth):
 				#sets (x, y) to first list spot
 				self.__gridSpot.append((x, y))
 				x += gridSize
 			y += gridSize
+
+		##If set to true then display lines that show the borders of each tile
+		#Trying out rectangles instead of lines for grid. 
+		if visability:
+			print(gridWidth, gridHeight)
+			posX, posY = (0, 0)
+			for i in range(gridWidth):
+				posY = 0 #reset to 0 after each loop of "j"
+				for j in range(gridHeight):
+					self.__render.create_rectangle(posX, posY, posX+gridSize, posY+gridSize, tags="VisualGrid")
+					posY += gridSize
+					# print((i, j))
+				posX += gridSize				
+
+			
+		##Call get_gridSpot if you want the whole list
 
 	##Getters
 	def get_screenSize(self):
@@ -117,11 +147,7 @@ class mainApplication():
 		
 	##Setters
 	def set_screenSize(self, width, height):
-		"""
-		Sets the height and width of the application. Default: (w=1280, h=768)
-		Argument:	width = (int), the number of pixels along the width of the app
-					height = (int), the number of pixels along the height of the app
-		"""
+		"""Sets the height and width of the application."""
 		self.__screenHeight = height
 		self.__screenWidth = width
 
