@@ -1,4 +1,4 @@
-Commit ID: #0 - Of Current Branch
+Commit ID: #1 - Of Current Branch
 Current Branch: 001_Developer[v0.0.2]
 Date: 03/09/2025
 Time Spent: 
@@ -8,9 +8,11 @@ Changed version:
 
     Commit notes (expanded):
         - Documentation v2: Plans to incorporate reStructured Text (RST) into my current documentation, will change them as I go. 
-            Classes updated to Doc v2: Collision Node, Main Application
-        - removed mainTkinter's createCanvas method as it was redundant and added its contents into the windowSetup method.
-        - last commit before "Developer Overhaul" Branch
+            Classes updated/added to Doc v2: Image Node, Events, Widgets
+        - Moved Gui folder ---> Engine 
+        - Moved mainTkinter.py ---> GUI subfolder
+        - Created eventsTkinter.py & widgetsTkinter.py
+        - Played around with the button widget, layed some groundwork for the drop down menues. 
 
     Future Plans:
         - Create Exception logic for existing code. 

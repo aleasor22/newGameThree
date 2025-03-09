@@ -45,12 +45,12 @@ class mainApplication():
 		"""
 		##Generates title and tk window size
 		self.__mainApp.title(self.__version)
-		self.__mainApp.geometry(str(self.__screenWidth)+'x'+str(self.__screenHeight))
+		self.__mainApp.geometry(str(self.__screenWidth+250)+'x'+str(self.__screenHeight))
 
 		#sets the new canvas to self.__render, then packs the canvas to screen
 		self.__render = Canvas(self.__mainApp, height=self.__screenHeight, width=self.__screenWidth, bg="Grey")
-		self.__render.grid(row=0, column=0, )#rowspan=10)
-		self.__render.grid_propagate(0)
+		self.__render.grid(row=0, column=0, rowspan=self.__screenWidth, columnspan=self.__screenHeight)
+		self.__render.grid_propagate(False)
 
 		#creates the grid that is applied in the background to the canvas, Optional visibility of the grid. 
 		self.createGrid(shown=visibility)

@@ -3,18 +3,20 @@ from PIL import ImageTk, Image #PIL = Pillow
 
 class iNode():
 	"""
-	iNode known as Image Node
-	Parent Class: None
-	Class Variables:
-		private: None
-		protected: 
-			._render = Canvas created by tkinter that is the deepest layer of the game\n
-			._imageID = id assigned from the ._render.create_image()\n
-			._size = (w, l) tuple that holds width & length of object\n
-			._coords = (x, y) tuple that holds coordinates of the object\n
-			._pilImage = object generated from calling .Image.open()\n
-			._tkImage =  object generated from calling ImageTK.PhotoImage(._pilImage)\n
-		public: None
+	Image Node
+	==========
+	Class Parameters
+	----------------
+	|   - render - *protected - obj* - Canvas created by tkinter that is the deepest layer of the application
+	|   - imageID - *protected - TBD* - id assigned from the ._render.create_image()
+	|   - size - *protected - tuple (w, l)* - Holds width & length of object
+	|   - coords - *protected - tuple (x, y)* - Holds coordinates of the object
+	|   - pilImage - *protected - obj* - Generated from calling .Image.open()
+	|   - tkImage - *protected - obj* - Generated from calling ImageTK.PhotoImage(._pilImage)
+	|
+	Class Description
+	-----------------
+		Houses all methods that deal with creating and displaying an image to the application screen.
 	"""
 	def __init__(self, canvas):
 		self._render = canvas	#Canvas created by tkinter that is the deepest layer of the game
@@ -28,11 +30,12 @@ class iNode():
 	#returns the PIL and tk images "ID" and size of image
 	def imageCreate(self, imgLocation):
 		"""
-		Method: imageCreate
-		req. Arguments:
-			imgLocation = (str) file location that stores target png 
-		Description: Calling this method will take the target image and generate both a PILLOW and tkinter image as well as saving the generated objects size to class variables
-		Returns: None
+		Required Arguments
+		------------------
+		|   - imgLocation - *str* - File location that stores target png
+		Method Description
+		------------------
+			Calling this method will take the target image and generate both a PILLOW and tkinter image as well as saving the generated objects size to class variables
 		"""
 		self._pilImage = Image.open(str(imgLocation))
 		self._size = self._pilImage.size
@@ -41,11 +44,12 @@ class iNode():
 
 	def imagePlace(self, coords):
 		"""
-		Method: imagePlace
-		req. Arguments:
-			coords = (x, y) tuple, The coordinates of where the image will be placed.
-		Description: Method is used to place an image onto the canvas as specified location. 
-		Returns: None
+		Required Arguments
+		------------------
+		|   - coords - *tuple (x, y)* - The coordinates of where the image will be placed.
+		Method Description
+		------------------
+			Method is used to place an image onto the canvas as specified location.
 		"""
 		x, y = coords
 		self._imageID = self._render.create_image(x, y, image=self._tkImage, anchor="nw")
@@ -54,13 +58,13 @@ class iNode():
 
 	def createImageTag(self, newTag):
 		"""
-		Method: createImageTag
-		req. Arguments:
-			newTag =  str, name of object (???)
-		Description: creates/add new tag to a image placed on the canvas
-		Returns: None
+		Required Arguments
+		------------------
+		|   - newTag - *str* - The new tag that will be added to self.
+		Method Description
+		------------------
+			Creates/Adds new tag to a image placed on the canvas
 		"""
-		# print("new tag: ", newTag)
 		self._render.addtag_withtag(newTag, self._imageID)
 
 	def get_imageID(self):
