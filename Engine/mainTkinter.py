@@ -5,31 +5,21 @@ import keyboard
 
 class mainApplication():
 	"""
-	Parameters
-	----------
-	FPS
-		int, how many times the canvas refreshes.
-	Methods
-	-------
-	:ref:windowSetUp(self)
-	:ref:closeWindow(self)
-	OLD
-	---
-	mainApplication known as Main Application (runs tkinter for Game)
-	Parent Class: None
-	Class Variables:
-		requires: title = str, holds what version number the game is in.
-		private:
-			.__FPS			= int, how many times the canvas refreshes.
-			.__mainApp 		= obj, creates the tkinter window.
-			.__version 		= str, what version the "game" is in. 
-			.__screenWidth	= int, how manny pixels wide is the canvas.
-			.__screenHeight	= int, how manny pixels tall is the canvas.
-			.__render		= obj, the canvas object within tkinter
-			.__gridSpot		= list, each index of the list houses a box of specific size 
-		protected: None
-		public: None
-	Description: 
+	Main Application
+	================
+	Class Parameters
+	----------------
+	|   - FPS - *private - int* - Screens refresh rate interval.
+	|   - mainApp - *private - obj* - creates the tkinter window.
+	|   - version - *private - str* - The version of the application.
+	|	- screenWidth - *private - int* - How manny pixels wide is the canvas.
+	|	- screenheight - *private - int* - How manny pixels tall is the canvas.
+	|	- render - *private - obj* - Tkinter's canvas object.
+	|	- gridSpot - *private - list* Each index of the list houses a box on the canvas like a coordinate plane. 
+	| 
+	Class Description
+	-----------
+		Custom interface with tkinter. Anything that is done through tkinter is housed here with a few exceptions. Exception Ex: Image Node
 	"""
 	#initialises class variables
 	def __init__(self, title):
@@ -44,52 +34,50 @@ class mainApplication():
 		#Entity setup
 		# self.player = Player()
 
-	def windowSetUp(self):
+	def windowSetUp(self, visibility=False):
 		"""
-		Description
-		-----------
-		Creates the tkinter window and sets up the canvas inside that window.
+		Required Arguments
+		------------------
+		|   - visibility - *bool* - Determins if a grid will be visabily shown on screen
+		Method Description
+		------------------
+			Creates the tkinter window and sets up the canvas inside that window.
 		"""
 		##Generates title and tk window size
 		self.__mainApp.title(self.__version)
 		self.__mainApp.geometry(str(self.__screenWidth)+'x'+str(self.__screenHeight))
 
-		#Packs the .__render into the tkinter window
-		self.createCanvas()
-		self.createGrid(visability=True)
-		#Calls the main loop of the tkinter window
-		self.__mainApp.mainloop()
-
-	def closeWindow(self):
-		"""Calls .quit() method to close the tkinter window."""
-		self.__mainApp.quit()
-
-	def createCanvas(self):
-		"""Creates the canvas and pushes it to screen."""
+		#sets the new canvas to self.__render, then packs the canvas to screen
 		self.__render = Canvas(self.__mainApp, height=self.__screenHeight, width=self.__screenWidth, bg="Grey")
 		self.__render.grid(row=0, column=0, )#rowspan=10)
 		self.__render.grid_propagate(0)
 
-		
-		# self.__render.create_line(64, 64, 128, 64, activewidth=1000)
-		# self.__render.create_line(64, 84, 128, 84)
+		#creates the grid that is applied in the background to the canvas, Optional visibility of the grid. 
+		self.createGrid(shown=visibility)
 
-		
+		#Calls the main loop of the tkinter window
+		self.__mainApp.mainloop()
+
+	def closeWindow(self):
+		"""Calls tkinter's .quit() method to close the tkinter window."""
+		self.__mainApp.quit()
+
 
 	#default grid size to 32x32, 40x24 boxes  or 960 total boxes
 	#default grid size of 64x64, 20x12 boxes  or 240 total boxes
-	def createGrid(self, gridSize=64, visability=False):
+	def createGrid(self, gridSize=64, shown=False):
 		"""
-		Method: createGrid
-		req. Arguments:
-			gridSize = int, default=64, declares how large or small each box of the grid will be. 
-			visibility = boolean, default=False, determins if the grid space is visible in the tkinter window. 
-		Description: Populates the .__gridSpot list with coordinates of the top left corner of each box as a tuple (x, y)
-		Returns: None
+		Required Arguments
+		------------------
+		|   - gridSize - *int* - The size of each box within the grid.
+		|   - shown - *bool* - Determins if the grid layout will be visible or not
+		Method Description
+		------------------
+			Populates the gridSpot list with coordinates of the top left corner of each grid box as a tuple (x, y)
 		"""
 		#finds out how many squares would exist per square size
-		gridWidth = int(self.__screenWidth / gridSize)
-		gridHeight = int(self.__screenHeight / gridSize)
+		gridWidth = int(self.__screenWidth / gridSize) #width(1280)/gridSize(64) = gridWidth(20)
+		gridHeight = int(self.__screenHeight / gridSize) #height(768)/gridSize(64) = girdHeight(12)
 
 		#grid starting coords
 		x, y = (0, 0)
@@ -104,18 +92,23 @@ class mainApplication():
 
 		##If set to true then display lines that show the borders of each tile
 		#Trying out rectangles instead of lines for grid. 
-		if visability:
-			print(gridWidth, gridHeight)
+		if shown:
+			# print(gridWidth, gridHeight)
 			posX, posY = (0, 0)
-			for i in range(gridWidth):
-				posY = 0 #reset to 0 after each loop of "j"
-				for j in range(gridHeight):
+			for i in range(gridHeight):
+				posX = 0 #reset to 0 after each loop of "j"
+				for j in range(gridWidth):
 					self.__render.create_rectangle(posX, posY, posX+gridSize, posY+gridSize, tags="VisualGrid")
-					posY += gridSize
+					posX += gridSize
 					# print((i, j))
-				posX += gridSize				
+				posY += gridSize				
 
-			
+			count = 0
+			for box in self.__gridSpot:
+				# print(box)
+				x, y = box
+				self.__render.create_text(x+(gridSize/2), y+(gridSize/2), text=str(count), tag="GlobalTxt")
+				count+=1
 		##Call get_gridSpot if you want the whole list
 
 	##Getters
@@ -137,8 +130,13 @@ class mainApplication():
 
 	def get_gridSpot(self, index=None):
 		"""
-		Argument: index = int, a specific index of the __gridSpot list
-		Returns either self.__gridSpot or self.__gridSpot @ a given index."""
+		Required Arguments
+		------------------
+		|	- index - *int* - Specific index in the gridSpot list
+		Methods Return
+		--------------
+			The entire list gridSpot or gridSpot[@index].
+		"""
 		# print(len(self.__gridSpot))
 		if index == None:
 			return self.__gridSpot

@@ -1,23 +1,35 @@
-Addition Notes for Commits
+Commit ID: #8 
+Current Branch: Master
+Date: 03/09/2025
+Time Spent: 
+Changed version:
+    Developer [v0.0.2]
+    Game [v0.0.41]
 
-    Changed version:    Game [v0.0.41]
-                        Developer [v0.0.1]
-
-    Can now easily change size of the tkinter window & Canvas. Can now show the grid on the developer.py tkinter window. With the ability to turn on & off effectively. 
-        
-
-    Discovered how reStructured Text (RST) works, planning to re-write documentation to utilize RST. So that I can hover over
-    Methods & Classes and get a good description of what they do in VS Code. 
-
-    Got heavily sidetracked with a couple of things, however I cleaned up my OneNotes and how they were organized. I also explanded on ideas that I initially wrote down. 
+    Commit notes (expanded):
+        - Documentation v2: Plans to incorporate reStructured Text (RST) into my current documentation, will change them as I go. 
+            Classes updated to Doc v2: Collision Node, Main Application
+        - removed mainTkinter's createCanvas method as it was redundant and added its contents into the windowSetup method.
+        - last commit before "Developer Overhaul" Branch
 
     Future Plans:
-        Should or Does the ID of the visual boxes need to match the __gridSpot list?
-        Tiles Maps: Goal to expand on this idea, will incorporate todays (3/8/25) work, and may improve how collision is handled. 
-        Revisit Sphinx autodoc??? ***PROBABLY NOT - MASSIVE AMMOUNTS OF TIME WAS WASTED ON THIS BEFORE***
-        
+        - Create Exception logic for existing code. 
+            *Major Goals: 
+                - Safely exit code when an incorrect variable type is given
+                - Package to for expected error codes. 
+        - Overhaul the mainTkinter.py & imageNode.py for the developer.py application. 
+            *Major Goals:
+                - Create Menu widgets
+                - Read/Write data to files for storage purposes
+                - determin if my tkinter interface should get its own Package
+                - What is imageNode.py's place in the overall program. 
+                    - Should it stay as it is?
+                    - be deleted and moved into mainTkinter.py?
+                    - What is it currently doing?
+
     Current Bugs:
-        Fix game.py, as todays changes broke that code
+        game.py is broken due to changes in mainTkinter.py for project developer [v0.0.1]
 
     Bugs Squashed:
-        Fixed an bug where the canvas.create_rectangle() method wasn't drawing to the screen.
+        **Not a bug but should be mentioned: Should or Does the ID of the visual boxes need to match the __gridSpot list? 
+            - Doesn't matter, when creating logic to label the boxes it organizes it based one when the box was added to the list

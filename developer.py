@@ -18,7 +18,7 @@ print('<<-------Initial Set UP-------->>')
 print('<<----------------------------->>')
 ##Code that compiles once on the first run of the code
 #Title of the app (str)
-title = "Map Developer [v0.0.1]"
+title = "Map Developer [v0.0.2]"
 ##Creates a tkinter object
 TKINTER = mainApplication(title)
 
@@ -31,7 +31,7 @@ developmentLoop()
 
 
 #This has to be after 'developmentLoop()
-TKINTER.windowSetUp()
+TKINTER.windowSetUp(visibility=True)
 
 
 print('\n\n\n')
