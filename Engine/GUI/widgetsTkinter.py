@@ -12,20 +12,16 @@ class wTkinter(eTkinter):
     ==========
     Class Parameters
     ----------------
-    |   - TBD - *Priv/Pub/prot - data type* - detailA
+    |   - TBD - *Priv/Pub/prot - noneType* - detailA
     Class Description
     -----------------
-        Where all sorts of widgets will be housed. Ex. Buttons, Lable Frames, drop down menues, etc...
+        Where all sorts of widgets will be housed. Ex. Buttons, Lable Frames, drop down menus, etc...
     """
     def __init__(self, mainApp, RENDER):
         super().__init__(mainApp, RENDER)
-        self.__fileMenu #Common file operations
-        self.__windowMenu #TBD what is does
-        self.__tiles #TBD what  it does
-        self.__future #Placeholder for future
         pass
 
-    ##----All widget methods except for Drop Down Menues----##
+    ##----All widget methods except for Drop Down menus----##
     def buttonSetUp(self):
         """
         Required Arguments
@@ -101,7 +97,7 @@ class wTkinter(eTkinter):
         return (buttonObject.winfo_width(), buttonObject.winfo_height())
     
     ##----ALL MENU DROP DOWN LOGIC----##
-    def menuesSetUp(self):
+    def menusSetUp(self):
         """
         Required Arguments
         ------------------
@@ -110,12 +106,20 @@ class wTkinter(eTkinter):
         |   - variableC - *dataType* - detailC
         Method Description
         ------------------
-            Where all the Drop Down Menues will be set up and packed to screen
+            Where all the Drop Down menus will be set up and packed to screen
         Methods Return
         --------------
             Returned Var - *dataType* - Detail
         """
         ##----START OF METHOD----##
 
+        ## Call menu methods in order left to right
+        self.fileMenu()
+        self.editMenu()
+        self.windowMenu()
+        self.tilesMenus()
+        self.futureMenus()
+
+        # self.compileMenuWidgets() ##Is this line needed?
         ##----END OF METHOD----##
         pass

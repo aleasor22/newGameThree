@@ -23,7 +23,7 @@ print('<<----------------------------->>')
 
 
 ##Title of the app (str)
-title = "Map Developer [v0.0.3]"
+title = "Map Developer [v0.0.4]"
 
 ##----BEGINNING OF CLASS CALLS----##
 ##Creates a tkinter object
@@ -33,6 +33,7 @@ RENDER = TKINTER.get_render()
 WIDGETS = wTkinter(TKINTER.get_mainApp(), RENDER)
 
 ##----START OF INITIAL SETUP----##
+WIDGETS.menusSetUp()
 WIDGETS.buttonSetUp()
 
 

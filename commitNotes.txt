@@ -1,18 +1,21 @@
-Commit ID: #1 - Of Current Branch
+Commit ID: #2 - Of Current Branch
 Current Branch: 001_Developer[v0.0.2]
-Date: 03/09/2025
+Date: 03/10/2025
 Time Spent: 
 Changed version:
-    Developer [v0.0.2]
+    Developer [v0.0.4]
     Game [v0.0.41]
 
     Commit notes (expanded):
         - Documentation v2: Plans to incorporate reStructured Text (RST) into my current documentation, will change them as I go. 
-            Classes updated/added to Doc v2: Image Node, Events, Widgets
-        - Moved Gui folder ---> Engine 
-        - Moved mainTkinter.py ---> GUI subfolder
-        - Created eventsTkinter.py & widgetsTkinter.py
-        - Played around with the button widget, layed some groundwork for the drop down menues. 
+            Classes/Methods updated/added to Doc v2: fileMenu, editMenu, windowMenu, tileMenu, futureMenu.
+        - Created logic for Drop Down Menus Options
+            *New Options:
+                -File
+                -Edit
+                -Window
+                -Tile
+                -(FUTURE)
 
     Future Plans:
         - Create Exception logic for existing code. 
@@ -21,17 +24,14 @@ Changed version:
                 - Package to for expected error codes. 
         - Overhaul the mainTkinter.py & imageNode.py for the developer.py application. 
             *Major Goals:
-                - Create Menu widgets
+                - Create Menu widgets: In-Progress
                 - Read/Write data to files for storage purposes
-                - determin if my tkinter interface should get its own Package
+                - determin if my tkinter interface should get its own Package: Yes
                 - What is imageNode.py's place in the overall program. 
-                    - Should it stay as it is?
-                    - be deleted and moved into mainTkinter.py?
-                    - What is it currently doing?
+                    - Stays where it is, eventsTkinter.py will just inherit class "iNode"
 
     Current Bugs:
         game.py is broken due to changes in mainTkinter.py for project developer [v0.0.1]
 
     Bugs Squashed:
-        **Not a bug but should be mentioned: Should or Does the ID of the visual boxes need to match the __gridSpot list? 
-            - Doesn't matter, when creating logic to label the boxes it organizes it based one when the box was added to the list
+        None as of this commit.
