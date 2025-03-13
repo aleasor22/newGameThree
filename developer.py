@@ -30,7 +30,7 @@ title = "Map Developer [v0.0.4]"
 TKINTER = mainApplication(title)
 RENDER = TKINTER.get_render()
 ##Creates Widget Object
-WIDGETS = wTkinter(TKINTER.get_mainApp(), RENDER)
+WIDGETS = wNode(TKINTER.get_mainApp(), RENDER)
 
 ##----START OF INITIAL SETUP----##
 WIDGETS.menusSetUp()

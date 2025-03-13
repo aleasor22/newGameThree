@@ -1,14 +1,14 @@
 ##IMPORTS START HERE
-from .eventsTkinter import eTkinter
+from .eventsNode import evNode
 from PIL import ImageTk, Image
 from tkinter import *
 import tkinter as tk
 import keyboard
 
 ##CLASS WIDGETS TKINTER STARTS HERE
-class wTkinter(eTkinter):
+class wNode(evNode):
     """
-    Widgets
+    Widget Node
     ==========
     Class Parameters
     ----------------
@@ -18,23 +18,31 @@ class wTkinter(eTkinter):
         Where all sorts of widgets will be housed. Ex. Buttons, Lable Frames, drop down menus, etc...
     """
     def __init__(self, mainApp, RENDER):
-        super().__init__(mainApp, RENDER)
+        evNode.__init__(self, mainApp, RENDER)
         pass
 
-    ##----All widget methods except for Drop Down menus----##
+    ##----DROP DOWN LOGIC----##
+    def menusSetUp(self):
+        """Where all the Drop Down menus will be set up and packed to screen"""
+        ##----START OF METHOD----##
+
+        ## Call menu methods in order left to right
+        self.fileMenu() #First
+        self.editMenu()
+        self.viewMenu()
+        self.tilesMenus() #Last
+        self.futureMenus()
+
+        # self.compileMenuWidgets() ##Is this line needed?
+        ##----END OF METHOD----##
+        pass
+
+    ##----START OF BUTTON LOGIC----##
     def buttonSetUp(self):
         """
-        Required Arguments
-        ------------------
-        |   - variableA - *dataType* - detailA
-        |   - variableB - *dataType* - detailB
-        |   - variableC - *dataType* - detailC
         Method Description
         ------------------
             Where all the buttons shown on the application will get set up and packed to screen
-        Methods Return
-        --------------
-            Returned Var - *data type* - Detail
         """
         ##----START OF METHOD----##
         ##Creating Label Frames
@@ -61,9 +69,8 @@ class wTkinter(eTkinter):
         """
         Required Arguments
         ------------------
+        |   - parrentWidget - *obj* - The object that the label will be a child widget of.
         |   - name - *str* - Displayed name of the Frame Label
-        |   - variableB - *dataType* - detailB
-        |   - variableC - *dataType* - detailC
         Method Description
         ------------------
             Where all Label Frame widgets get created.
@@ -81,7 +88,7 @@ class wTkinter(eTkinter):
         """
         Required Arguments
         ------------------
-        |   - naobjectsToPropagateme - *list - obj* - List of objects to make grid_propagate(False)
+        |   - objectsToPropagate - *list - obj* - List of objects to make grid_propagate(False)
         Method Description
         ------------------
             Where specified Label Frame widgets have propagate settings changed to False.
@@ -95,31 +102,3 @@ class wTkinter(eTkinter):
     def get_buttonSize(self, buttonObject):
         """Returns (width, length) of the button once it has been displayed to screen"""
         return (buttonObject.winfo_width(), buttonObject.winfo_height())
-    
-    ##----ALL MENU DROP DOWN LOGIC----##
-    def menusSetUp(self):
-        """
-        Required Arguments
-        ------------------
-        |   - variableA - *dataType* - detailA
-        |   - variableB - *dataType* - detailB
-        |   - variableC - *dataType* - detailC
-        Method Description
-        ------------------
-            Where all the Drop Down menus will be set up and packed to screen
-        Methods Return
-        --------------
-            Returned Var - *dataType* - Detail
-        """
-        ##----START OF METHOD----##
-
-        ## Call menu methods in order left to right
-        self.fileMenu()
-        self.editMenu()
-        self.windowMenu()
-        self.tilesMenus()
-        self.futureMenus()
-
-        # self.compileMenuWidgets() ##Is this line needed?
-        ##----END OF METHOD----##
-        pass
