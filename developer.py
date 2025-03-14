@@ -1,5 +1,6 @@
 from Engine import *
 import keyboard
+import os
 
 ##Handels active events that need to be consistently tested for
 def developmentLoop():
@@ -8,6 +9,9 @@ def developmentLoop():
         TKINTER.closeWindow()
 
     ##----START OF ACTIVE EVENTS----##
+    if WIDGETS.get_isFileOpen():
+        # print("A file is opened")
+        WIDGETS.fileChangedMsg()
 
     ##----END OF ACTIVE EVENTS----##
 
@@ -21,16 +25,18 @@ print('<<----------------------------->>')
 print('<<-------Initial Set UP-------->>')
 print('<<----------------------------->>')
 
+##Root directory
+ROOT = os.path.dirname(__file__)
 
 ##Title of the app (str)
-title = "Map Developer [v0.0.4]"
+TITLE = "Map Developer [v0.0.51]"
 
 ##----BEGINNING OF CLASS CALLS----##
 ##Creates a tkinter object
-TKINTER = mainApplication(title)
+TKINTER = mainApplication(TITLE)
 RENDER = TKINTER.get_render()
 ##Creates Widget Object
-WIDGETS = wNode(TKINTER.get_mainApp(), RENDER)
+WIDGETS = wNode(TKINTER.get_mainApp(), RENDER, ROOT)
 
 ##----START OF INITIAL SETUP----##
 WIDGETS.menusSetUp()

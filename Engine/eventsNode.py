@@ -25,9 +25,9 @@ class evNode(iNode, fNode):
     -----------------
         Where all the events that trigger in applications will be written and processed. 
     """
-    def __init__(self, mainApp, RENDER):
+    def __init__(self, mainApp, RENDER, rootPath):
         iNode.__init__(self, canvas=RENDER)
-        fNode.__init__(self)
+        fNode.__init__(self, mainApp, rootPath)
         self.__mainMenu = Menu(mainApp) ##PARENT MENU OBJECT
         self._mainApp = mainApp ##PARENT TK OBJECT
 
@@ -53,7 +53,7 @@ class evNode(iNode, fNode):
         self.__mainMenu.add_cascade(label="File", menu=self._fileMenuList) ## Adds fileMenuList to main=Menu widget. 
 
         ##----START OF COMMAND LOGIC---##
-        self._fileMenuList.add_command(label="New File...", command=self.printMsgToScreen)
+        self._fileMenuList.add_command(label="New File...", command=self.newFile)
         self._fileMenuList.add_command(label="Open...", command=self.openFile)
         self._fileMenuList.add_command(label="Save...", command=lambda:self.saveFile(False))
         self._fileMenuList.add_command(label="Save as...", command=self.saveFile)

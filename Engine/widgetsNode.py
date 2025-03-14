@@ -17,8 +17,8 @@ class wNode(evNode):
     -----------------
         Where all sorts of widgets will be housed. Ex. Buttons, Lable Frames, drop down menus, etc...
     """
-    def __init__(self, mainApp, RENDER):
-        evNode.__init__(self, mainApp, RENDER)
+    def __init__(self, mainApp, RENDER, rootPath):
+        evNode.__init__(self, mainApp, RENDER, rootPath)
         pass
 
     ##----DROP DOWN LOGIC----##

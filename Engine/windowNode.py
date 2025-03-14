@@ -26,8 +26,8 @@ class mainApplication():
 		self.__FPS = 1000 / 30
 		self.__mainApp = tk.Tk() #Tkinter window
 		self.__version = title
-		self.__screenWidth = 1280
-		self.__screenHeight = 768
+		self.__screenWidth = 1280 ##GAME DISPLAY WIDTH
+		self.__screenHeight = 768 ##GAME DISPLAY HEIGHT
 		self.__render = None#Canvas(self.__mainApp, height=self.__screenHeight, width=self.__screenWidth, bg='Grey')
 		self.__gridSpot = [] #a list where each index is a tuple of a cordinate spot. 
 

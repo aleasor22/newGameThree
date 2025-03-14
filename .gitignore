@@ -71,6 +71,9 @@ instance/
 # Sphinx documentation
 /docs/
 
+# z_Maps Temporary
+/z_Maps
+
 # PyBuilder
 target/
 

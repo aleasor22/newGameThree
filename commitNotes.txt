@@ -1,22 +1,17 @@
-Commit ID: #3 - Of Current Branch
+Commit ID: #4 - Of Current Branch
 Current Branch: 001_Developer[v0.0.2]
-Date: 03/12/2025
-Time Spent: 2.5 hours
+Date: 03/13/2025
+Time Spent: 3.75 hours
 Changed version:
-    Developer [v0.0.5]
+    Developer [v0.0.51]
     Game [v0.0.41]
 
     Commit notes (expanded):
         - Documentation v2: Plans to incorporate reStructured Text (RST) into my current documentation, will change them as I go. 
             Classes/Methods updated/added to Doc v2: filesNode.py
         - Developed logic for:
-            - File
-		- Changed File names/locations
-			*Removed GUI, moved its contents into the Engine Folder
-				mainTkinter.py --> tkinterNode.py
-				eventsTkinter --> eventsNode
-				widgetsTkinter --> widgetsNode
-		- Created filesNode.py --> holds all logic for file manipulation.
+            - newFile & openFile Methods
+        - Temporarly retired the fileChangedMsg method unsure when I will try to impliment it again. 
 
     Future Plans:
         - Create Exception logic for existing code. 
@@ -25,8 +20,7 @@ Changed version:
                 - Package to for expected error codes.
 
     Current Bugs:
-		1. filesChanged Method runs an infinite loop
-        2. game.py is broken due to changes in mainTkinter.py for project developer [v0.0.1]
+        1. game.py is broken due to changes in mainTkinter.py for project developer [v0.0.1]
 
     Bugs Squashed:
         None as of this commit.
