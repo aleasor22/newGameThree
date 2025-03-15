@@ -1,26 +1,25 @@
-Commit ID: #4 - Of Current Branch
+Commit ID: #5 - Of Current Branch
 Current Branch: 001_Developer[v0.0.2]
-Date: 03/13/2025
-Time Spent: 3.75 hours
+Date: 03/15/2025
+Time Spent: 6.25 hours
 Changed version:
-    Developer [v0.0.51]
-    Game [v0.0.41]
+	Developer [v0.0.52]
+	Game [v0.0.41]
 
-    Commit notes (expanded):
-        - Documentation v2: Plans to incorporate reStructured Text (RST) into my current documentation, will change them as I go. 
-            Classes/Methods updated/added to Doc v2: filesNode.py
-        - Developed logic for:
-            - newFile & openFile Methods
-        - Temporarly retired the fileChangedMsg method unsure when I will try to impliment it again. 
+	Commit notes (expanded):
+		- Re-organized my thoughts for this branch, much better plan for the future of JOB[001]
+		- I have menu widgets in a good spot right now, some of the basic functionaliy is there. Most won't be truely ready to develop until I have basic Canvas editing abilities.
+		- Moving forward I will be working on mouse functionality.
+			* Giving M1, M2, M3 and Scrolling all individual functionality
+		- The method fileChangedMsg --> activeChange
+			*Will revive this method when I begin working on the project tree view, which will be towards the end of 001_Developer's job cycle
 
-    Future Plans:
-        - Create Exception logic for existing code. 
-            *Major Goals: 
-                - Safely exit code when an incorrect variable type is given
-                - Package to for expected error codes.
+	Future Plans:
+		- Create Exception logic for existing code. Next Branch - 002_ExceptionLogic[v0]
 
-    Current Bugs:
-        1. game.py is broken due to changes in mainTkinter.py for project developer [v0.0.1]
+	Current Bugs:
+		1. game.py is broken due to changes in windowNode.py for project developer [v0.0.1]
+		2. Pressing q will close all tkinter windows. Potential solution: A way to identify different instances and assign some form of ID. 
 
-    Bugs Squashed:
-        None as of this commit.
+	Bugs Squashed:
+		None as of this commit.

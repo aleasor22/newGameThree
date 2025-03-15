@@ -11,7 +11,7 @@ class mainApplication():
 	----------------
 	|   - FPS - *private - int* - Screens refresh rate interval.
 	|   - mainApp - *private - obj* - creates the tkinter window.
-	|   - version - *private - str* - The version of the application.
+	|   - title - *private - str* - The version of the application.
 	|	- screenWidth - *private - int* - How manny pixels wide is the canvas.
 	|	- screenheight - *private - int* - How manny pixels tall is the canvas.
 	|	- render - *private - obj* - Tkinter's canvas object.
@@ -22,19 +22,26 @@ class mainApplication():
 		Custom interface with tkinter. Anything that is done through tkinter is housed here with a few exceptions. Exception Ex: Image Node
 	"""
 	#initialises class variables
-	def __init__(self, title):
+	def __init__(self):
 		self.__FPS = 1000 / 30
 		self.__mainApp = tk.Tk() #Tkinter window
-		self.__version = title
-		self.__screenWidth = 1280 ##GAME DISPLAY WIDTH
-		self.__screenHeight = 768 ##GAME DISPLAY HEIGHT
+		self.__title = ""
+		self.__screenWidth = 0	#Game Default: 1280 ##GAME DISPLAY WIDTH
+		self.__screenHeight = 0	#Game Default: 768 ##GAME DISPLAY HEIGHT
 		self.__render = None#Canvas(self.__mainApp, height=self.__screenHeight, width=self.__screenWidth, bg='Grey')
 		self.__gridSpot = [] #a list where each index is a tuple of a cordinate spot. 
 
-		#Entity setup
-		# self.player = Player()
 
-	def windowSetUp(self, visibility=False):
+	def newWindow(self, title="", screenSize=(0, 0)):
+		##--SAVE DATA TO CLASS VARIABLES--##
+		self.__title = title
+		self.__screenWidth, self.__screenHeight = screenSize
+
+		##--CREATES THE TKINDER WINDOW--##
+		self.__mainApp.title(self.__title)
+		self.__mainApp.geometry(str(self.__screenWidth)+'x'+str(self.__screenHeight))
+
+	def newCanvas(self, visibility=False, canvasSize=(0, 0)):
 		"""
 		Required Arguments
 		------------------
@@ -44,19 +51,21 @@ class mainApplication():
 			Creates the tkinter window and sets up the canvas inside that window.
 		"""
 		##Generates title and tk window size
-		self.__mainApp.title(self.__version)
-		self.__mainApp.geometry(str(self.__screenWidth+250)+'x'+str(self.__screenHeight))
+		# self.__mainApp.title(self.__version)
+		# self.__mainApp.geometry(str(self.__screenWidth+250)+'x'+str(self.__screenHeight))
 
 		#sets the new canvas to self.__render, then packs the canvas to screen
-		self.__render = Canvas(self.__mainApp, height=self.__screenHeight, width=self.__screenWidth, bg="Grey")
-		self.__render.grid(row=0, column=0, rowspan=self.__screenWidth, columnspan=self.__screenHeight)
+		self.__render = Canvas(self.__mainApp, width=canvasSize[0], height=canvasSize[1], bg="Grey")
+		self.__render.grid(row=0, column=0, rowspan=canvasSize[0], columnspan=canvasSize[1])
 		self.__render.grid_propagate(False)
 
 		#creates the grid that is applied in the background to the canvas, Optional visibility of the grid. 
 		self.createGrid(shown=visibility)
-
+		
 		#Calls the main loop of the tkinter window
-		self.__mainApp.mainloop()
+		# self.__mainApp.mainloop()
+
+		
 
 	def closeWindow(self):
 		"""Calls tkinter's .quit() method to close the tkinter window."""
@@ -144,8 +153,17 @@ class mainApplication():
 			return self.__gridSpot[index]
 		
 	##Setters
+	##NOTE: Does this methods still need to exists?
 	def set_screenSize(self, width, height):
 		"""Sets the height and width of the application."""
 		self.__screenHeight = height
 		self.__screenWidth = width
+	
+	def set_rowConfig(self):
+		for i in range(100):
+			self.__mainApp.grid_rowconfigure(i, weight=1)
+
+	def set_columnConfig(self):
+		for i in range(100):
+			self.__mainApp.grid_columnconfigure(i, weight=1)
 

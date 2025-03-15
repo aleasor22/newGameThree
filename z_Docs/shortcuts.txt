@@ -1,0 +1,23 @@
+List of shortcuts:
+Undo::ctrl + z
+Redo::ctrl + y
+Cut::ctrl + x
+Copy::ctrl + c
+Paste::ctrl + v
+New::ctrl + n
+Open::ctrl + o
+Save..::ctrl + s
+Save As..::ctrl + shift + s
+Exit::alt + F4, q
+~~
+Description:
+= Undoes the last action.
+= Redoes the last action.
+= Cut's an object to clipboard.
+= Copies an object to clipboard.
+= Pastes an object form clipboard.
+= Creates a new file to work in.
+= Opens an existing file to work in.
+= Saves the current file.
+= Saves the current file to a new name.
+= Exits the program. Closing the tkinter window.

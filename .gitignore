@@ -68,11 +68,15 @@ instance/
 # Scrapy stuff:
 .scrapy
 
+#Start of Custom Ignore
+/.vscode
+
 # Sphinx documentation
 /docs/
 
 # z_Maps Temporary
 /z_Maps
+##End of Custom Ignore
 
 # PyBuilder
 target/
