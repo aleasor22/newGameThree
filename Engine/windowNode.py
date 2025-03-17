@@ -1,7 +1,6 @@
 from PIL import ImageTk, Image
 from tkinter import *
 import tkinter as tk
-import keyboard
 
 class mainApplication():
 	"""

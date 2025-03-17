@@ -1,11 +1,9 @@
 ##IMPORTS START HERE
 from .windowNode import mainApplication
+from pynput import mouse, keyboard
 from .imageNode import iNode
 from .filesNode import fNode
-from PIL import ImageTk, Image
-from tkinter import filedialog
 from tkinter import *
-import keyboard
 import re
 
 ##START OF EVENTS TKINTER CLASS
@@ -28,9 +26,10 @@ class evNode(iNode, fNode):
 
 
 	##----START OF COMMAND METHODS----##
-	def printMsgToScreen(self):
+	def printMsgToScreen(self, widget):
 		"""Prints a special message to screen"""
 		print("**NO COMMAND YET**")
+		widget.bell()
 
 	def openShortCuts(self):
 		"""Generates a new Tkinter window used to display all avaialable shortcuts to screen"""
@@ -65,5 +64,47 @@ class evNode(iNode, fNode):
 		pass
 	##----END OF COMMAND METHODS----##
 
-    
-        
+
+	##----START OF MOUSE ACTION METHODS----##
+	# def mouseSetUp(self):
+	# 	"""Where all the mouse methods get called"""
+	# 	self.rightClick()
+	# 	self.leftClick()
+	# 	pass
+	
+	# def rightClick(self):
+	# 	"""Logic to process when 'M2' is pressed"""
+	# 	if mouse.is_pressed('right'):
+	# 		print("M2 was/is pressed")
+	# 		# self.printMsgToScreen()
+
+	# 	# print("M2 Pressed")
+	
+	# def leftClick(self):
+	# 	"""Logic to process when 'M1' is pressed"""
+	# 	if mouse.is_pressed('left'):
+	# 		print("M1 was/is pressed")
+	# 		# self.printMsgToScreen()
+
+	# def isMouseInWindow(self):
+	# 	"""Returns True or False based on if the mouse is inside the tkinter window."""		
+	# 	windowPos = (self.get_mainApp().winfo_x(), self.get_mainApp().winfo_y())
+
+	# 	if mouse.get_position()[0] > self.get_mainApp().winfo_x() and mouse.get_position()[0] < (windowPos[0]+self.get_mainApp().winfo_width()):
+	# 		if mouse.get_position()[1] > self.get_mainApp().winfo_y() and mouse.get_position()[1] < (windowPos[1]+self.get_mainApp().winfo_height()):
+	# 			# print("within window")
+	# 			return True
+	# 		else:
+	# 			# print("outside window")
+	# 			return False
+	# 	else:
+	# 		# print("outside window")
+	# 		return False
+	##----END OF MOUSE ACTION METHODS----##
+
+   	##----START OF KEYBOARD ACTION METHODS----##
+	# def keyboardSetUp(self):
+	# 	"""Where all the keyboard methods get called"""
+	# 	pass
+	
+	##----END OF KEYBOARD ACTION METHODS----##  

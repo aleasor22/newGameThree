@@ -1,18 +1,21 @@
-Commit ID: #5 - Of Current Branch
+Commit ID: #6 - Of Current Branch
 Current Branch: 001_Developer[v0.0.2]
-Date: 03/15/2025
-Time Spent: 6.25 hours
+Date: 03/16/2025
+Time Spent: 8.25 hours
 Changed version:
-	Developer [v0.0.52]
+	Developer [v0.0.53]
 	Game [v0.0.41]
 
 	Commit notes (expanded):
-		- Re-organized my thoughts for this branch, much better plan for the future of JOB[001]
-		- I have menu widgets in a good spot right now, some of the basic functionaliy is there. Most won't be truely ready to develop until I have basic Canvas editing abilities.
-		- Moving forward I will be working on mouse functionality.
-			* Giving M1, M2, M3 and Scrolling all individual functionality
-		- The method fileChangedMsg --> activeChange
-			*Will revive this method when I begin working on the project tree view, which will be towards the end of 001_Developer's job cycle
+		• Began developing the mouse functionality
+		•  Learned how to use pynput to handle mouse and keyboard events
+			• Determined that mouse events are better handled by tkinter's event logic
+			• Can determine when the mouse is inside the root canvas and can generate the edit menu widget to screen
+			• Using pynput for mouse events got laggy when I tried to post a menu widget
+		• The pynput.keyboard will be very powerful. Huge potential for the game
+		• Should determine if input Node should be a child class to widgets, benefits include: access to render & mainApp, access to any pre-made widgets, access to file logic.
+			• If I do this, making shortcuts should be very possible and even easy. 
+		- Need to make documentation for inputNode. 
 
 	Future Plans:
 		- Create Exception logic for existing code. Next Branch - 002_ExceptionLogic[v0]
@@ -20,6 +23,8 @@ Changed version:
 	Current Bugs:
 		1. game.py is broken due to changes in windowNode.py for project developer [v0.0.1]
 		2. Pressing q will close all tkinter windows. Potential solution: A way to identify different instances and assign some form of ID. 
+		3. When creating a button through the mouse right-click, it activates the Leave event. (Not Major)
+		4. when calling widget.post(x, y) the coords are offset unless I add _root after x, y
 
 	Bugs Squashed:
 		None as of this commit.

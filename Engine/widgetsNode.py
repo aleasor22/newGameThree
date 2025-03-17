@@ -66,7 +66,7 @@ class wNode(evNode):
 		frameTwo = LabelFrame(self.get_mainApp(), text="TEST-FRAME2", width=250, height=500, bg='Grey')
 		##Creating Buttons
 		TEST =  Button(self.get_mainApp(), text="TestOne", )
-		TEST2 =  Button(frameOne, text="TestTwo", )
+		TEST2 =  Button(frameOne, text="TestTwo", command=lambda:self.printMsgToScreen(TEST2))
 		TEST3 =  Button(frameTwo, text="TestThree", )
 		TEST4 =  Button(frameOne, text="TestFour", )
 
@@ -77,7 +77,6 @@ class wNode(evNode):
 		TEST2.grid(row=0, column=0)
 		TEST4.grid(row=0, column=1)
 		TEST3.grid(row=1, column=1)
-		print("button Size2?", self.get_buttonSize(TEST2))
 		
 		##----END OF METHOD----##
 
@@ -123,7 +122,7 @@ class wNode(evNode):
 		##----END OF COMMAND LOGIC---##
          
     
-	def editMenu(self):
+	def editMenu(self, rightClick=False, pos=(0, 0)):
 		"""
 		Method Description
 		------------------
@@ -192,3 +191,6 @@ class wNode(evNode):
 	def get_buttonSize(self, buttonObject):
 		"""Returns (width, length) of the button once it has been displayed to screen"""
 		return (buttonObject.winfo_width(), buttonObject.winfo_height())
+	
+	def get_editMenuList(self):
+		return self._editMenuList
