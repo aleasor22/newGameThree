@@ -26,6 +26,8 @@ class iNode():
 		self._pilImage = None	#object generated from calling .Image.open()
 		self._tkImage = None	#object generated from calling ImageTK.PhotoImage(._pilImage)
 
+		self.__imageInfo = []	#holds pilImage, tkImage as a list
+
 	#creates an image file for python to render and use
 	#returns the PIL and tk images "ID" and size of image
 	def imageCreate(self, imgLocation):
@@ -37,10 +39,21 @@ class iNode():
 		------------------
 			Calling this method will take the target image and generate both a PILLOW and tkinter image as well as saving the generated objects size to class variables
 		"""
+		self.__imageInfo = []
 		self._pilImage = Image.open(str(imgLocation))
 		self._size = self._pilImage.size
 		self._tkImage = ImageTk.PhotoImage(self._pilImage)
 
+		self.__imageInfo.append(self._pilImage)
+		self.__imageInfo.append(self._tkImage)
+		
+		return self.__imageInfo
+
+	# def newImage(self, imgLocation):
+	# 	nuts = Image.open(str(imgLocation))
+	# 	nuts2 = ImageTk.PhotoImage(ismage=Image.open(str(imgLocation)))
+	# 	print(nuts2)
+	# 	return nuts2
 
 	def imagePlace(self, coords):
 		"""
@@ -56,6 +69,10 @@ class iNode():
 		# self._render.addtag_withtag(imageTag, imageID) #adds a tangable tag to entity
 		# return imageID
 
+	def rotateImage(self):
+		## Future Method to be written
+		pass
+
 	def createImageTag(self, newTag):
 		"""
 		Required Arguments
@@ -70,3 +87,6 @@ class iNode():
 	def get_imageID(self):
 		"""Returns self._imageID"""
 		return self._imageID
+
+	# def get_tkImage(sefl):
+	# 	return self

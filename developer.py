@@ -9,8 +9,10 @@ def developmentLoop():
 		# print("A file is opened")
 		WIDGETS.activeChanges()
 	
-	# print(INPUTS.x, INPUTS.y)
-
+	if INPUTS.get_activeWindowTitle() == TITLE:
+		INPUTS.startListening()
+	else:
+		INPUTS.stopListening()
 	##----END OF ACTIVE EVENTS----##
 
 	MAINAPP.after(int(TKINTER.get_FPS()), developmentLoop)
@@ -27,7 +29,7 @@ print('<<----------------------------->>')
 ROOT = os.path.dirname(__file__)
 
 ##Title of the app (str)
-TITLE = "Map Developer [v0.0.53]"
+TITLE = "Map Developer [v0.0.6]"
 
 ##----BEGINNING OF CLASS CALLS----##
 ##Creates a tkinter object
@@ -41,7 +43,7 @@ MAINAPP = TKINTER.get_mainApp()
 WIDGETS = wNode(MAINAPP, RENDER, ROOT)
 
 ##Keyboard & Mouse Setup
-INPUTS = inNode(MAINAPP, RENDER, WIDGETS)
+INPUTS = inNode(mainApp=MAINAPP, canvas=RENDER, root=ROOT, widget=WIDGETS)
 INPUTS.bindAllEvents()
 
 ##----START OF INITIAL SETUP----##

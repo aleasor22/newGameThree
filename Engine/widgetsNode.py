@@ -1,5 +1,6 @@
 ##IMPORTS START HERE
 from .eventsNode import evNode
+from .dataNode import dNode
 from PIL import ImageTk, Image
 from tkinter import *
 import tkinter as tk
@@ -37,6 +38,10 @@ class wNode(evNode):
 		mainApp.config(menu=self.__mainMenu)
 
 		##----DECLARATION OF BUTTONS----## #NOTE IF NEEDED
+		self.__buttonDict = {}
+		self.__allImageNames = ['player', 'enemyOne', 'wall', 'wall02']
+		self.__frameOneRow = 0
+		self.__frameOneColumn = 0
 		##----DECLARATION OF LABEL FRAMES----## #NOTE IF NEEDED
 		##----END OF INIT----##
 
@@ -57,27 +62,44 @@ class wNode(evNode):
 		pass
 
 	##----START OF BUTTON LOGIC----##
+	def createNewButton(self, fileDir, parent, buttonID):
+		image = self.imageCreate(fileDir)
+		self.__buttonDict[buttonID] = dNode()
+		self.__buttonDict[buttonID].imageInfo(fileDir=fileDir, pilImage=image[0], tkImage=image[1])
+
+		button = Button(parent, image=self.__buttonDict[buttonID].tkImage, command=lambda:self.printMsgToScreen(parent))
+		
+		return button
+
+		
 	def buttonSetUp(self):
 		"""Where all the buttons shown on the application will get called and packed to screen        """
 		#NOTE#----CHANGES WILL BE MADE DURING PHASE C OF JOB[001]----##
 		##----START OF METHOD----##
 		##Creating Label Frames
-		frameOne = LabelFrame(self.get_mainApp(), text="TEST-FRAME1", width=250, height=500, bg='Grey')
-		frameTwo = LabelFrame(self.get_mainApp(), text="TEST-FRAME2", width=250, height=500, bg='Grey')
+		frameOne = LabelFrame(self._mainApp, text="TEST-FRAME1", width=284, height=650, bg='Grey')
 		##Creating Buttons
-		TEST =  Button(self.get_mainApp(), text="TestOne", )
-		TEST2 =  Button(frameOne, text="TestTwo", command=lambda:self.printMsgToScreen(TEST2))
-		TEST3 =  Button(frameTwo, text="TestThree", )
-		TEST4 =  Button(frameOne, text="TestFour", )
+		
+		##Eventually a loop would iterate over this and create all instances of dataNode
+		
 
 		##Packs every widget to screen
 		#RENDER is at grid(row=0, column=0, rowspan=1280, columnspan=768)
-		frameOne.grid(row=0, column=769, rowspan=500)
+		frameOne.grid(row=0, column=769, rowspan=840, columnspan=284)
 		self.set_gridPropagateFalse([frameOne, ])
-		TEST2.grid(row=0, column=0)
-		TEST4.grid(row=0, column=1)
-		TEST3.grid(row=1, column=1)
-		
+		# print(int(770/64))
+		imageNum = 0
+		for i in range(int(620/64)):
+			for j in range(int(284/64)):
+				if imageNum < len(self.__allImageNames):
+					button = self.createNewButton("z_Pictures/{0}.png".format(self.__allImageNames[imageNum]), frameOne, self.__allImageNames[imageNum])
+					button.grid(row=i, column=j)
+					imageNum += 1
+					print(i, j)
+				else:
+					break
+
+
 		##----END OF METHOD----##
 
 	##----LABEL FRAME GROUPS----#
@@ -118,7 +140,7 @@ class wNode(evNode):
 		self._fileMenuList.add_command(label="Save Project as..", command=self.printMsgToScreen)##NOTE FUTURE
 		self._fileMenuList.add_command(label="Close Project", command=self.closeProject)		##NOTE FUTURE
 		self._fileMenuList.add_separator() #Spaces command options in a menu tab.
-		self._fileMenuList.add_command(label="Exit", command=self.get_mainApp().quit)
+		self._fileMenuList.add_command(label="Exit", command=self._mainApp.quit)
 		##----END OF COMMAND LOGIC---##
          
     

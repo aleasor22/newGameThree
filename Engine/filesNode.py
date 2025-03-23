@@ -1,11 +1,12 @@
 from tkinter import filedialog
+from .imageNode import iNode
 from tkinter import *
 import tkinter
 import time
 import os
 import re
 
-class fNode():
+class fNode(iNode):
 	"""
 	Files Node
 	==========
@@ -21,11 +22,11 @@ class fNode():
 	-----------------
 		Where any manipulation of files is handled
 	"""
-	def __init__(self, mainApp, rootPath):
+	def __init__(self, mainApp, rootPath, canvas):
 		##----START OF INIT METHOD----##
-
+		iNode.__init__(self, canvas=canvas)
 		##----DECLARATION OF FILE VARIABLES----##
-		self.__mainApp = mainApp
+		self._mainApp = mainApp  ## Passed copy of the tkinter mainApp
 		self.__rootDir = rootPath ## currently unused
 		self.__commonFileTypes = [('Text Document', '*.txt'), ('All Files', '*.*')]
 		self._mapFileLocation = './z_Maps'
@@ -78,9 +79,9 @@ class fNode():
 			createOpenButton.grid(row=1, column=2)
 			cancelButton.grid(row=1, column=3)
 
-			##----DETERMINS WHERE THE WINDOW WILL BE PLACED----##111
-			ws = self.__mainApp.winfo_width() # width of the screen
-			hs = self.__mainApp.winfo_height() # height of the screen
+			##----DETERMINS WHERE THE WINDOW WILL BE PLACED----##
+			ws = self._mainApp.winfo_width() # width of the screen
+			hs = self._mainApp.winfo_height() # height of the screen
 
 			x = (ws/2) - (244/2)
 			y = (hs/2) - (45/2)
@@ -134,7 +135,7 @@ class fNode():
 		else:
 			##--FILE WILL NEED TO BE A CLASS VARIABLE TO ALLOW SAVES FROM THE MENU DROP DOWN--#
 			## EX. open(str(FILEOBJ.name), 'w')
-			print("place holder")
+			print("SAVING....")
 			pass
 
 	##----CLOSES THE ACTIVE FILE----##	
@@ -241,10 +242,6 @@ class fNode():
 	def get_windowSize(self, window):
 		print(window.winfo_width(), window.winfo_height())
 
-	def get_mainApp(self):
-		"""Returns variable self.__mainApp"""
-		return self.__mainApp
-	
 	##----SETTERS----##
 	# def set_varName(self, newVar): ##EXAMPLE
 	# 	"""Sets newVar to self.__varName"""

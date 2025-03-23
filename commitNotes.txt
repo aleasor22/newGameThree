@@ -1,30 +1,41 @@
-Commit ID: #6 - Of Current Branch
+Commit ID: #7 - Of Current Branch
 Current Branch: 001_Developer[v0.0.2]
-Date: 03/16/2025
-Time Spent: 8.25 hours
+Date: 03/22/2025
+Time Spent: 7.25 hours
 Changed version:
-	Developer [v0.0.53]
+	Developer [v0.0.6]
 	Game [v0.0.41]
 
 	Commit notes (expanded):
-		• Began developing the mouse functionality
-		•  Learned how to use pynput to handle mouse and keyboard events
-			• Determined that mouse events are better handled by tkinter's event logic
-			• Can determine when the mouse is inside the root canvas and can generate the edit menu widget to screen
-			• Using pynput for mouse events got laggy when I tried to post a menu widget
-		• The pynput.keyboard will be very powerful. Huge potential for the game
-		• Should determine if input Node should be a child class to widgets, benefits include: access to render & mainApp, access to any pre-made widgets, access to file logic.
-			• If I do this, making shortcuts should be very possible and even easy. 
-		- Need to make documentation for inputNode. 
+		• Finished ground work for the mouse and keyboard inputs, using tkinter events for the mouse and pynput for keyboard. 
+			• Made it so that pynput only is actively looking for inputs when the tk window is in focus. 
+		• Reorganized the class heirarchy
+			• inputNode inherets eventsNode
+			• filesNode inherets imageNode
+			• eventsNode now just inherets filesNode
+			• widgetsNode still only inherits eventsNode
+		• Got some buttons hardcoded into the TEST-FRAME1 widget, they will not auto format based on total number
+			• Future plans for that are to allow a new button that will import new buttons into the TEST-FRAME1 widget.
+			• The code used now will eventually be repurposed as setup for default button loadouts/importing new button loadouts.
+		• Created a new class that will be used only for data storage. Like an expanded dictionary to store multiple instances of the same class.
+		
 
 	Future Plans:
-		- Create Exception logic for existing code. Next Branch - 002_ExceptionLogic[v0]
+		• Create new sets of buttons for the window. "Import Button", "Save Button Set", "Import Button Set", "Delete/Remove Button"
+		• Provide functionality to the buttons inside TEST-FRAME1 and the above buttons
+			• The associated mouse/keyboard events that comes with the above functionality
+		• A way to highlight and show highlighted objects
+			• use this for cut/copy/paste functionality
+			• The ability to move objects after they are placed
+		• Still need to code the 'rotateImage' method
+		• etc...
 
 	Current Bugs:
 		1. game.py is broken due to changes in windowNode.py for project developer [v0.0.1]
 		2. Pressing q will close all tkinter windows. Potential solution: A way to identify different instances and assign some form of ID. 
-		3. When creating a button through the mouse right-click, it activates the Leave event. (Not Major)
-		4. when calling widget.post(x, y) the coords are offset unless I add _root after x, y
+		3. When creating a widget on the main canvas it activates the Leave event. (Not Major)
+		(REMOVED) 4. when calling widget.post(x, y) the coords are offset unless I add _root after x, y
+		4. Sertain locations on the screen, when clicked have pygetwindow.getActiveWindow() return None. (Current solution is try except block)
 
 	Bugs Squashed:
-		None as of this commit.
+		1. Just using event.x_root, event.y_root for widget.post() rather than finding out why it works this way. 
